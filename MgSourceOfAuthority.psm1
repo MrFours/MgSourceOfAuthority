@@ -36,7 +36,7 @@ Function Get-MgSourceOfAuthority {
     $resourceType = $Type.ToLowerInvariant()
     $request = @{
         Method      = 'GET'
-        Uri         = '/beta/{0}s/{1}/onPremisesSyncBehavior' -f $resourceType, $Id
+        Uri         = '/v1.0/{0}s/{1}/onPremisesSyncBehavior' -f $resourceType, $Id
         ErrorAction = 'Stop'
     }
 
@@ -47,8 +47,8 @@ Function Get-MgSourceOfAuthority {
         return
     }
 
-    # The beta endpoint has returned both a direct object and a value wrapper
-    # during its preview lifetime, so handle either response shape.
+    # The endpoint has returned both a direct object and a value wrapper,
+    # so handle either response shape.
     if ($response -is [System.Collections.IDictionary] -and $response.Contains('value')) {
         $behavior = $response['value']
     } elseif ($response.PSObject.Properties['value']) {
@@ -117,7 +117,7 @@ Function Set-MgSourceOfAuthority {
 
     $request = @{
         Method      = 'PATCH'
-        Uri         = '/beta/{0}s/{1}/onPremisesSyncBehavior' -f $resourceType, $Id
+        Uri         = '/v1.0/{0}s/{1}/onPremisesSyncBehavior' -f $resourceType, $Id
         ContentType = 'application/json'
         Body        = @{
             '@odata.type'   = '#microsoft.graph.onPremisesSyncBehavior'

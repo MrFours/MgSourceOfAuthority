@@ -1,6 +1,6 @@
 @{
     RootModule        = 'MgSourceOfAuthority.psm1'
-    ModuleVersion     = '0.1.0'
+    ModuleVersion     = '0.1.1'
     GUID              = 'cdf60fd0-f8c9-48f4-9b36-0bbaf267ac57'
     Author            = 'Stefan Forsberg'
     Copyright         = '(c) 2026 Stefan Forsberg. All rights reserved.'

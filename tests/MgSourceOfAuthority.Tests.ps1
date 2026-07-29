@@ -105,6 +105,10 @@ Describe 'Source-of-authority behavior' {
             $result.Id | Should -Be '00000000-0000-0000-0000-000000000001'
             $result.Type | Should -Be 'User'
             $result.IsCloudManaged | Should -BeTrue
+            Should -Invoke Invoke-MgGraphRequest -Times 1 -Exactly -ParameterFilter {
+                $Method -eq 'GET' -and
+                $Uri -eq '/v1.0/users/00000000-0000-0000-0000-000000000001/onPremisesSyncBehavior'
+            }
         }
 
         It 'does not send a PATCH request with WhatIf' {
@@ -127,6 +131,27 @@ Describe 'Source-of-authority behavior' {
             }
             Should -Invoke Invoke-MgGraphRequest -Times 0 -ParameterFilter {
                 $Method -eq 'PATCH'
+            }
+        }
+
+        It 'uses the v1.0 endpoint when changing the state' {
+            Mock Invoke-MgGraphRequest {
+                if ($Method -eq 'GET') {
+                    return @{
+                        isCloudManaged = $false
+                    }
+                }
+            }
+
+            Set-MgSourceOfAuthority `
+                -Id '00000000-0000-0000-0000-000000000001' `
+                -Type User `
+                -IsCloudManaged $true `
+                -Confirm:$false
+
+            Should -Invoke Invoke-MgGraphRequest -Times 1 -Exactly -ParameterFilter {
+                $Method -eq 'PATCH' -and
+                $Uri -eq '/v1.0/users/00000000-0000-0000-0000-000000000001/onPremisesSyncBehavior'
             }
         }
     }

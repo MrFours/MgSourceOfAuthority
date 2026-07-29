@@ -2,8 +2,7 @@
 
 `MgSourceOfAuthority` reads and changes the source-of-authority state for Microsoft Entra users and groups through Microsoft Graph.
 
-> [!WARNING]
-> This module uses the Microsoft Graph `/beta` endpoint. Beta APIs are subject to change and aren't supported by Microsoft for production use. Test changes carefully before using the module in an important tenant.
+The module uses the Microsoft Graph `/v1.0` endpoint.
 
 ## Understanding the state
 
@@ -12,7 +11,9 @@
 | `$true` | The object is cloud managed. Updates from on-premises Active Directory are blocked in the cloud. |
 | `$false` | On-premises updates are allowed, and the on-premises directory can take over the object. |
 
-See the Microsoft Graph documentation for the [`onPremisesSyncBehavior` resource](https://learn.microsoft.com/graph/api/resources/onpremisessyncbehavior?view=graph-rest-beta).
+See Microsoft's guidance for configuring source of authority for
+[users](https://learn.microsoft.com/entra/identity/hybrid/how-to-user-source-of-authority-configure)
+and [groups](https://learn.microsoft.com/entra/identity/hybrid/how-to-group-source-of-authority-configure).
 
 ## Requirements
 

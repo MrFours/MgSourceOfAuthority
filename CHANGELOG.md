@@ -6,12 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
-### Added
+## [0.1.1] - 2026-07-29
 
-- Public repository structure.
-- Module manifest and dependency metadata.
-- README, example, license, and starter tests.
-- Microsoft Entra compatibility aliases.
+### Changed
+
+- Replaced the Microsoft Graph beta API paths with the stable v1.0 endpoints.
+- Updated the README to reference the current Microsoft Entra source-of-authority guidance.
 
 ## [0.1.0] - 2026-07-29
 
@@ -20,3 +20,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Commands for reading and changing user and group source-of-authority state.
 - Permission checks and `ShouldProcess` support.
 - Pipeline input for user and group objects.
+- Public repository structure.
+- Module manifest and dependency metadata.
+- README, example, license, and starter tests.
+- Microsoft Entra compatibility aliases.
